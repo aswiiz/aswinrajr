@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#03040b">
+<title>Aswin Raj R — Junior Software Developer</title>
+<meta name="description" content="Futuristic personal portfolio landing website for Aswin Raj R, Junior Software Developer. Explore projects, technical skills, industry experience, and hackathons.">
+
+<!-- OpenGraph Metadata -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aswin Raj R — Junior Software Developer">
+<meta property="og:description" content="Diploma in Computer Engineering student & Junior Software Developer passionate about building web apps, testing, debugging, and practical software solutions.">
+<meta property="og:site_name" content="Aswin Raj R Portfolio">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aswin Raj R — Junior Software Developer">
+<meta name="twitter:description" content="Diploma in Computer Engineering student & Junior Software Developer passionate about building web apps, testing, debugging, and practical software solutions.">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+<!-- Structured Data JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Aswin Raj R",
+  "jobTitle": "Junior Software Developer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "GrapesGenix Technical Solutions"
+  },
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Model Polytechnic College, Karunagappally"
+  },
+  "email": "rajraswin51@gmail.com",
+  "telephone": "+918848263704",
+  "sameAs": [
+    "https://github.com/aswiiz/aswiiz",
+    "https://www.linkedin.com/in/aswin-raj-r-b5b5093a2"
+  ],
+  "knowsAbout": ["Python", "Django", "MongoDB", "JavaScript", "Software Testing", "Debugging", "Web Development"]
+}
+</script>
+
+<style>
+/* =========================================================
+   RESET & BASE STYLES
+========================================================= */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+}
+
+body {
+    margin: 0;
+    background: #03040b;
+    color: #fff;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    overflow-x: hidden;
+    overflow-y: auto;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+/* =========================================================
+   DESIGN TOKENS
+========================================================= */
+:root {
+    --bg: #03040b;
+    --bg-secondary: #070a16;
+    --panel: rgba(255, 255, 255, 0.045);
+    --panel-hover: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.1);
+    --border-glow: rgba(139, 92, 246, 0.4);
+    --purple: #8b5cf6;
+    --purple-light: #a78bfa;
+    --blue: #3b82f6;
+    --cyan: #22d3ee;
+    --muted: #8f96a8;
+    --text-dim: #64748b;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-heading: 'Syne', 'Inter', sans-serif;
+}
+
+/* Scroll Depth Progress Bar */
+#scrollProgressBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #8b5cf6 0%, #3b82f6 50%, #22d3ee 100%);
+    box-shadow: 0 0 12px #22d3ee, 0 0 5px #8b5cf6;
+    z-index: 100000;
+    pointer-events: none;
+    transition: width 0.05s ease-out;
+}
+
+/* Toast Notification */
+#toast {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--cyan);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(34, 211, 238, 0.3);
+    z-index: 99999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    pointer-events: none;
+}
+
+#toast.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.container {
+    width: min(1180px, 90%);
+    margin: auto;
+}
+
+.section {
+    padding: 120px 0;
+    position: relative;
+}
+
+.section-label {
+    color: #9b82ff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: var(--font-mono);
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(38px, 5.5vw, 68px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 55px;
+    font-weight: 800;
+}
+
+/* =========================================================
+   MAIN WEBSITE
+========================================================= */
+#website {
+    position: relative;
+    min-height: 100vh;
+    opacity: 1;
+    background:
+        radial-gradient(circle at 80% 10%, rgba(91, 70, 220, 0.16), transparent 30%),
+        radial-gradient(circle at 20% 60%, rgba(34, 211, 238, 0.08), transparent 35%),
+        #03040b;
+}
+
+/* Top Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 74px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    z-index: 1000;
+    background: rgba(3, 4, 11, 0.75);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    transition: background-color 0.3s ease;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    color: var(--purple);
+    font-size: 28px;
+}
+
+.navlinks {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.navlinks a {
+    color: #9297a8;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: color 0.25s ease;
+    position: relative;
+    padding: 4px 0;
+}
+
+.navlinks a:hover {
+    color: #fff;
+}
+
+.navlinks a:hover::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    border-radius: 2px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-button {
+    padding: 9px 18px;
+    border-radius: 9999px;
+    background: #fff;
+    color: #050505;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.nav-button:hover {
+    background: #f1f5f9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35);
+}
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 74px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 30px;
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: var(--font-mono);
+    margin-bottom: 25px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #55e88b;
+    box-shadow: 0 0 15px #55e88b;
+}
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(52px, 8vw, 105px);
+    line-height: 0.88;
+    letter-spacing: -4px;
+    margin-bottom: 24px;
+    font-weight: 900;
+}
+
+.gradient {
+    background: linear-gradient(135deg, #fff 0%, #a78bfa 50%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.hero-role {
+    font-size: clamp(20px, 2.8vw, 28px);
+    color: #e2e8f0;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-text {
+    color: #8f96a8;
+    max-width: 620px;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 32px;
+}
+
+.buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 13px 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 13.5px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.35);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    backdrop-filter: blur(12px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px);
+}
+
+.socials {
+    display: flex;
+    gap: 18px;
+    margin-top: 28px;
+}
+
+.socials a {
+    color: #777f91;
+    font-size: 13.5px;
+    font-family: var(--font-mono);
+    transition: color 0.2s ease;
+}
+
+.socials a:hover {
+    color: var(--cyan);
+}
+
+/* Hero Visual / Laptop */
+.hero-visual {
+    position: relative;
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.laptop {
+    position: relative;
+    width: 440px;
+    height: 280px;
+    transform: perspective(900px) rotateX(8deg);
+    border: 2px solid #2c3658;
+    border-radius: 20px;
+    background: #070a13;
+    box-shadow:
+        0 0 50px rgba(92, 75, 255, 0.18),
+        0 30px 100px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease;
+}
+
+.laptop-screen {
+    position: absolute;
+    inset: 12px;
+    border-radius: 12px;
+    background: #05070d;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 22px;
+    overflow: hidden;
+}
+
+.screen-header {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.screen-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #334155;
+}
+
+.screen-dot.red { background: #ef4444; }
+.screen-dot.yellow { background: #f59e0b; }
+.screen-dot.green { background: #10b981; }
+
+.code {
+    color: #7dd3fc;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.8;
+}
+
+.code .purple { color: #c084fc; }
+.code .green { color: #86efac; }
+.code .comment { color: #64748b; }
+
+.laptop-base {
+    position: absolute;
+    width: 510px;
+    height: 18px;
+    left: 50%;
+    bottom: -20px;
+    transform: translateX(-50%);
+    background: #121625;
+    border: 1px solid #2b3550;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.float-tech {
+    position: absolute;
+    padding: 12px 18px;
+    background: rgba(15, 20, 38, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    border-radius: 14px;
+    font-size: 12.5px;
+    font-family: var(--font-mono);
+    color: #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    animation: floatTech 4.5s ease-in-out infinite;
+    z-index: 5;
+}
+
+.t1 { top: 8%; left: 2%; }
+.t2 { top: 18%; right: -2%; animation-delay: 0.9s; }
+.t3 { bottom: 18%; left: -2%; animation-delay: 1.6s; }
+.t4 { bottom: 6%; right: 4%; animation-delay: 2.3s; }
+
+@keyframes floatTech {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-14px) rotate(2deg); }
+}
+
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 60px;
+}
+
+.about-text {
+    color: #9298a8;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.about-text p {
+    margin-bottom: 22px;
+}
+
+.about-text strong {
+    color: #fff;
+}
+
+.about-card {
+    padding: 35px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+}
+
+.about-card h3 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    margin-bottom: 18px;
+    color: #fff;
+}
+
+.about-card p {
+    color: #818899;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+/* =========================================================
+   TECHNICAL SKILLS
+========================================================= */
+.skills {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.skill {
+    padding: 28px 24px;
+    min-height: 140px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    border-radius: 18px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill:hover {
+    transform: translateY(-8px);
+    border-color: #765de4;
+    background: var(--panel-hover);
+    box-shadow: 0 20px 50px rgba(90, 70, 200, 0.15);
+}
+
+.skill-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.skill h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.skill p {
+    color: #747b8c;
+    font-size: 12.5px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   PROJECTS SECTION
+========================================================= */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.project {
+    position: relative;
+    min-height: 320px;
+    padding: 35px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project:hover {
+    transform: translateY(-10px);
+    border-color: #765de4;
+    box-shadow: 0 25px 60px rgba(118, 93, 228, 0.15);
+}
+
+.project-number {
+    color: #666e80;
+    font-size: 11.5px;
+    letter-spacing: 2px;
+    font-family: var(--font-mono);
+}
+
+.project h3 {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 800;
+    margin: 22px 0 12px;
+    color: #fff;
+}
+
+.project p {
+    color: #828999;
+    font-size: 14.5px;
+    line-height: 1.7;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+}
+
+.tag {
+    padding: 6px 11px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #a5b4fc;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    font-weight: 500;
+}
+
+/* =========================================================
+   EXPERIENCE SECTION
+========================================================= */
+.experience {
+    max-width: 920px;
+    padding: 40px;
+    border-left: 3px solid #8b5cf6;
+    background: rgba(255, 255, 255, 0.025);
+    border-radius: 0 22px 22px 0;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.experience small {
+    color: #8b5cf6;
+    letter-spacing: 2px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 600;
+}
+
+.experience h3 {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 800;
+    margin: 12px 0 6px;
+    color: #fff;
+}
+
+.experience .company {
+    color: var(--cyan);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.experience p {
+    color: #858b9b;
+    line-height: 1.8;
+    font-size: 15.5px;
+}
+
+/* =========================================================
+   HACKATHONS
+========================================================= */
+.hackathons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.hackathon {
+    padding: 32px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    border-radius: 20px;
+    transition: all 0.35s ease;
+}
+
+.hackathon:hover {
+    transform: translateY(-8px);
+    border-color: #22d3ee;
+    box-shadow: 0 20px 50px rgba(34, 211, 238, 0.12);
+}
+
+.hackathon span {
+    color: #22d3ee;
+    font-size: 11.5px;
+    font-family: var(--font-mono);
+    letter-spacing: 1px;
+}
+
+.hackathon h3 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 16px;
+    color: #fff;
+}
+
+/* =========================================================
+   DEPLOYMENT
+========================================================= */
+.deployments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.deploy {
+    padding: 24px 36px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    border-radius: 16px;
+    font-size: 17px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.deploy:hover {
+    transform: translateY(-5px);
+    border-color: #8b5cf6;
+    background: var(--panel-hover);
+    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.15);
+}
+
+/* =========================================================
+   EDUCATION
+========================================================= */
+.education {
+    padding: 40px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: var(--panel);
+}
+
+.education h3 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.education p.inst {
+    color: var(--cyan);
+    font-weight: 600;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.education p.desc {
+    color: #828999;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* =========================================================
+   STATS STRIP
+========================================================= */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.stat {
+    text-align: center;
+    padding: 35px 20px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.stat:hover {
+    transform: translateY(-5px);
+    border-color: var(--border-glow);
+}
+
+.stat strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 46px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #fff, #8b5cf6, #22d3ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+}
+
+.stat span {
+    color: #7d8494;
+    font-size: 13.5px;
+    font-weight: 500;
+}
+
+/* =========================================================
+   CONTACT
+========================================================= */
+.contact {
+    text-align: center;
+    padding-bottom: 120px;
+}
+
+.contact h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(44px, 7vw, 92px);
+    line-height: 0.95;
+    letter-spacing: -3px;
+    margin-bottom: 24px;
+    font-weight: 900;
+}
+
+.contact p {
+    color: #858b9b;
+    max-width: 620px;
+    margin: 0 auto 35px;
+    font-size: 16.5px;
+    line-height: 1.8;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 35px 0;
+    color: #626978;
+    font-size: 13px;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* =========================================================
+   SCROLL REVEAL UTILITIES
+========================================================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* =========================================================
+   RESPONSIVE MEDIA QUERIES
+========================================================= */
+@media (max-width: 900px) {
+    .navlinks {
+        display: none;
+    }
+
+    .hero-grid,
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-top: 110px;
+    }
+
+    .hero-visual {
+        height: 400px;
+    }
+
+    .laptop {
+        width: 350px;
+        height: 220px;
+    }
+
+    .laptop-base {
+        width: 400px;
+    }
+
+    .skills {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .projects {
+        grid-template-columns: 1fr;
+    }
+
+    .hackathons {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .section {
+        padding: 85px 0;
+    }
+
+    .hero h1 {
+        font-size: 56px;
+        letter-spacing: -3px;
+    }
+
+    .hero-visual {
+        height: 330px;
+    }
+
+    .laptop {
+        width: 290px;
+        height: 185px;
+    }
+
+    .laptop-base {
+        width: 330px;
+    }
+
+    .float-tech {
+        font-size: 9.5px;
+        padding: 8px 12px;
+    }
+
+    .skills {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .contact h2 {
+        letter-spacing: -2px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Scroll Depth Progress Bar -->
+<div id="scrollProgressBar" aria-hidden="true"></div>
+
+<!-- Toast Feedback -->
+<div id="toast" role="status" aria-live="polite">Copied to clipboard!</div>
+
+<!-- =====================================================
+     COMPLETE PORTFOLIO HOMEPAGE
+====================================================== -->
+<main id="website">
+
+    <!-- TOP NAVIGATION -->
+    <nav class="navbar">
+
+        <a href="#home" class="logo" aria-label="Aswin Raj R Home">
+            ASWIN<span>.</span>
+        </a>
+
+        <ul class="navlinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#hackathons">Hackathons</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a href="#contact" class="nav-button">
+                Let's Connect →
+            </a>
+        </div>
+
+    </nav>
+
+
+    <!-- =================================================
+         HERO SECTION
+    ================================================== -->
+    <section class="hero" id="home">
+
+        <div class="container hero-grid">
+
+            <div class="reveal">
+
+                <div class="hero-status">
+                    <span class="status-dot"></span>
+                    Open to Opportunities
+                </div>
+
+                <div class="section-label">
+                    Hello, I'm
+                </div>
+
+                <h1>
+                    ASWIN<br>
+                    <span class="gradient">RAJ R.</span>
+                </h1>
+
+                <div class="hero-role">
+                    Junior Software Developer
+                </div>
+
+                <p class="hero-text">
+                    Diploma in Computer Engineering student passionate
+                    about building web applications, solving real-world
+                    problems, testing software and debugging technical
+                    issues.
+                </p>
+
+                <div class="buttons">
+
+                    <a href="#projects" class="btn btn-primary">
+                        View My Work →
+                    </a>
+
+                    <a href="#contact" class="btn btn-secondary">
+                        Contact Me
+                    </a>
+
+                </div>
+
+                <div class="socials">
+
+                    <a href="https://github.com/aswiiz/aswiiz" target="_blank" rel="noopener noreferrer">
+                        GitHub ↗
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/aswin-raj-r-b5b5093a2" target="_blank" rel="noopener noreferrer">
+                        LinkedIn ↗
+                    </a>
+
+                    <a href="mailto:rajraswin51@gmail.com">
+                        Email ↗
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual reveal">
+
+                <div class="float-tech t1">
+                    🐍 Python
+                </div>
+
+                <div class="float-tech t2">
+                    ⚡ Django
+                </div>
+
+                <div class="float-tech t3">
+                    🍃 MongoDB
+                </div>
+
+                <div class="float-tech t4">
+                    &lt;/&gt; HTML / CSS / JS
+                </div>
+
+                <div class="laptop">
+
+                    <div class="laptop-screen">
+
+                        <div class="screen-header">
+                            <span class="screen-dot red"></span>
+                            <span class="screen-dot yellow"></span>
+                            <span class="screen-dot green"></span>
+                        </div>
+
+<pre class="code"><span class="purple">const</span> developer = {
+
+  name:
+    <span class="green">"Aswin Raj R"</span>,
+
+  role:
+    <span class="green">"Junior Software Developer"</span>,
+
+  stack: [
+    <span class="green">"Python"</span>,
+    <span class="green">"Django"</span>,
+    <span class="green">"MongoDB"</span>
+  ]
+
+};
+
+<span class="comment">// Continuous engineering loop</span>
+<span class="purple">build</span>();
+<span class="purple">test</span>();
+<span class="purple">debug</span>();
+<span class="purple">deploy</span>(); <span class="comment">// 🚀 to production</span></pre>
+
+                    </div>
+
+                    <div class="laptop-base"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ABOUT SECTION
+    ================================================== -->
+    <section class="section" id="about">
+
+        <div class="container">
+
+            <div class="section-label">
+                01 — About Me
+            </div>
+
+            <h2 class="section-title">
+                Developer with a<br>
+                problem-solving mindset.
+            </h2>
+
+            <div class="about-grid">
+
+                <div class="about-text reveal">
+
+                    <p>
+                        I'm <strong>Aswin Raj R</strong>, a Diploma in
+                        Computer Engineering student at
+                        <strong>Model Polytechnic College,
+                        Karunagappally</strong>.
+                    </p>
+
+                    <p>
+                        I'm passionate about software development,
+                        web technologies, testing and debugging.
+                        I enjoy building practical applications and
+                        solving technical problems.
+                    </p>
+
+                    <p>
+                        My focus is on Python, Django, web development,
+                        databases, software testing, debugging and
+                        application deployment.
+                    </p>
+
+                </div>
+
+                <div class="about-card reveal">
+
+                    <h3>
+                        My Approach
+                    </h3>
+
+                    <p>
+                        ⚡ <strong>Build with purpose.</strong><br><br>
+                        🧪 <strong>Test carefully.</strong><br><br>
+                        🔍 <strong>Find the problem.</strong><br><br>
+                        💡 <strong>Understand the cause.</strong><br><br>
+                        🛠️ <strong>Fix it cleanly.</strong><br><br>
+                        🚀 <strong>Continuously improve it.</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SKILLS SECTION
+    ================================================== -->
+    <section class="section" id="skills">
+
+        <div class="container">
+
+            <div class="section-label">
+                02 — Technical Skills
+            </div>
+
+            <h2 class="section-title">
+                My technical<br>
+                toolkit.
+            </h2>
+
+            <div class="skills">
+
+                <div class="skill reveal">
+                    <div class="skill-icon">🐍</div>
+                    <h3>Python</h3>
+                    <p>Core programming, algorithms & backend application development</p>
+                </div>
+
+                <div class="skill reveal">
+                    <div class="skill-icon">⚡</div>
+                    <h3>Django</h3>
+                    <p>Robust backend & RESTful web application engineering</p>
+                </div>
+
+                <div class="skill reveal">
+                    <div class="skill-icon">🌐</div>
+                    <h3>HTML5</h3>
+                    <p>Semantic web structure, accessibility & modern SEO</p>
+                </div>
+
+                <div class="skill reveal">
+                    <div class="skill-icon">🎨</div>
+                    <h3>CSS3</h3>
+                    <p>Responsive interface design, flexbox, grid & keyframes</p>
+                </div>
+
+                <div class="skill reveal">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>JavaScript</h3>
+                    <p>DOM manipulation, asynchronous APIs & interactive web experiences</p>
+                </div>
+
+                <div class="skill reveal">
+                    <div class="skill-icon">🍃</div>
+                    <h3>MongoDB</h3>
+                    <p>NoSQL database collections, queries & schema design</p>
+                </div>
+
+                <div class="skill reveal">
+                    <div class="skill-icon">🔀</div>
+                    <h3>Git & GitHub</h3>
+                    <p>Branching, commits, pull requests & version control</p>
+                </div>
+
+                <div class="skill reveal">
+                    <div class="skill-icon">🧪</div>
+                    <h3>Testing & Debugging</h3>
+                    <p>Bug isolation, edge cases, root-cause analysis & troubleshooting</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         PROJECTS SECTION
+    ================================================== -->
+    <section class="section" id="projects">
+
+        <div class="container">
+
+            <div class="section-label">
+                03 — Selected Work
+            </div>
+
+            <h2 class="section-title">
+                Turning ideas into<br>
+                real-world solutions.
+            </h2>
+
+            <div class="projects">
+
+                <article class="project reveal">
+
+                    <div>
+                        <div class="project-number">
+                            PROJECT / 01
+                        </div>
+
+                        <h3>
+                            Telegram AutoFilter Bot
+                        </h3>
+
+                        <p>
+                            An automated Telegram bot designed to
+                            make file searching and access easier
+                            through real-time query filtering, indexing,
+                            and responsive message dispatching.
+                        </p>
+                    </div>
+
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Telegram API</span>
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">Pyrogram</span>
+                    </div>
+
+                </article>
+
+
+                <article class="project reveal">
+
+                    <div>
+                        <div class="project-number">
+                            PROJECT / 02
+                        </div>
+
+                        <h3>
+                            Student Attendance Management System
+                        </h3>
+
+                        <p>
+                            A full-stack web-based attendance management
+                            system designed to digitally record, calculate,
+                            track percentages, and organize student attendance
+                            records cleanly for academic institutions.
+                        </p>
+                    </div>
+
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                    </div>
+
+                </article>
+
+
+                <article class="project reveal">
+
+                    <div>
+                        <div class="project-number">
+                            PROJECT / 03
+                        </div>
+
+                        <h3>
+                            Healthcare Hub
+                        </h3>
+
+                        <p>
+                            A healthcare-focused digital portal platform
+                            designed to bring healthcare-related services,
+                            doctor appointments, and medical information
+                            into one accessible, user-friendly web application.
+                        </p>
+                    </div>
+
+                    <div class="tags">
+                        <span class="tag">Django</span>
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                    </div>
+
+                </article>
+
+
+                <article class="project reveal">
+
+                    <div>
+                        <div class="project-number">
+                            PROJECT / 04
+                        </div>
+
+                        <h3>
+                            Web Applications & Experiments
+                        </h3>
+
+                        <p>
+                            A curated suite of web development projects
+                            and technical experiments built while mastering
+                            backend architecture, responsive frontend design,
+                            testing protocols, and cloud deployment pipelines.
+                        </p>
+                    </div>
+
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         EXPERIENCE SECTION
+    ================================================== -->
+    <section class="section" id="experience">
+
+        <div class="container">
+
+            <div class="section-label">
+                04 — Experience
+            </div>
+
+            <h2 class="section-title">
+                Real-world<br>
+                industry experience.
+            </h2>
+
+            <div class="experience reveal">
+
+                <small>
+                    INDUSTRY ON CAMPUS · IoC
+                </small>
+
+                <h3>
+                    Junior Software Developer
+                </h3>
+
+                <div class="company">
+                    GrapesGenix Technical Solutions
+                </div>
+
+                <p>
+                    Working as a Junior Software Developer at
+                    GrapesGenix Technical Solutions as part of the
+                    Industry on Campus (IoC) initiative.
+                </p>
+
+                <p style="margin-top: 15px;">
+                    Gaining hands-on professional exposure to production software
+                    development lifecycles, rigorous manual and automated testing,
+                    debugging, bug isolation, collaborative version control, and solving
+                    real client technical challenges.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         HACKATHONS
+    ================================================== -->
+    <section class="section" id="hackathons">
+
+        <div class="container">
+
+            <div class="section-label">
+                05 — Hackathons
+            </div>
+
+            <h2 class="section-title">
+                Building under<br>
+                pressure.
+            </h2>
+
+            <div class="hackathons">
+
+                <div class="hackathon reveal">
+
+                    <span>
+                        HACKATHON / 01
+                    </span>
+
+                    <h3>
+                        ICGAIFE 3.0
+                    </h3>
+
+                    <p style="color: #828999; font-size: 13.5px; margin-top: 10px;">
+                        Fast-paced engineering sprint tackling algorithmic challenges and collaborative software design.
+                    </p>
+
+                </div>
+
+                <div class="hackathon reveal">
+
+                    <span>
+                        HACKATHON / 02
+                    </span>
+
+                    <h3>
+                        Tharang 2K26
+                    </h3>
+
+                    <p style="color: #828999; font-size: 13.5px; margin-top: 10px;">
+                        Technical symposium hackathon focused on practical prototype ideation and rapid implementation.
+                    </p>
+
+                </div>
+
+                <div class="hackathon reveal">
+
+                    <span>
+                        HACKATHON / 03
+                    </span>
+
+                    <h3>
+                        IEEE Aithon at CEK
+                    </h3>
+
+                    <p style="color: #828999; font-size: 13.5px; margin-top: 10px;">
+                        Engineering competition at College of Engineering Karunagappally emphasizing technical problem-solving.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         DEPLOYMENT
+    ================================================== -->
+    <section class="section">
+
+        <div class="container">
+
+            <div class="section-label">
+                06 — Deployment Pipeline
+            </div>
+
+            <h2 class="section-title">
+                From localhost<br>
+                to production.
+            </h2>
+
+            <div class="deployments">
+
+                <div class="deploy reveal">
+                    🚀 Koyeb (Serverless Container Deployments)
+                </div>
+
+                <div class="deploy reveal">
+                    ▲ Render (Cloud Application Hosting)
+                </div>
+
+                <div class="deploy reveal">
+                    ▲ Vercel (Edge Web Deployments)
+                </div>
+
+                <div class="deploy reveal">
+                    ◈ GitHub (CI/CD & Source Control)
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         EDUCATION
+    ================================================== -->
+    <section class="section">
+
+        <div class="container">
+
+            <div class="section-label">
+                07 — Education
+            </div>
+
+            <h2 class="section-title">
+                Academic<br>
+                foundation.
+            </h2>
+
+            <div class="education reveal">
+
+                <h3>
+                    Diploma in Computer Engineering
+                </h3>
+
+                <p class="inst">
+                    Model Polytechnic College, Karunagappally
+                </p>
+
+                <p class="desc">
+                    Comprehensive technical education encompassing programming fundamentals,
+                    data structures, computer networks, database systems, software engineering,
+                    system testing, and hardware-software integration.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         STATS
+    ================================================== -->
+    <section class="section">
+
+        <div class="container">
+
+            <div class="stats">
+
+                <div class="stat reveal">
+                    <strong>3+</strong>
+                    <span>Major Projects</span>
+                </div>
+
+                <div class="stat reveal">
+                    <strong>3</strong>
+                    <span>Hackathons</span>
+                </div>
+
+                <div class="stat reveal">
+                    <strong>4</strong>
+                    <span>Cloud Platforms</span>
+                </div>
+
+                <div class="stat reveal">
+                    <strong>1</strong>
+                    <span>Industry Experience</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         CONTACT
+    ================================================== -->
+    <section class="contact" id="contact">
+
+        <div class="container">
+
+            <div class="section-label">
+                08 — Get in Touch
+            </div>
+
+            <h2 class="reveal">
+                Let's build<br>
+                something useful.
+            </h2>
+
+            <p class="reveal">
+                Interested in software development, Python/Django web apps, testing,
+                debugging, or collaborative technology projects? I'm always open to discussing new opportunities.
+            </p>
+
+            <div class="contact-links reveal">
+
+                <a
+                    href="mailto:rajraswin51@gmail.com"
+                    class="btn btn-primary"
+                    id="emailBtn">
+                    ✉️ Email: rajraswin51@gmail.com
+                </a>
+
+                <button
+                    class="btn btn-secondary"
+                    id="copyEmailBtn"
+                    title="Copy Email Address">
+                    📋 Copy Email
+                </button>
+
+                <a
+                    href="tel:8848263704"
+                    class="btn btn-secondary">
+                    📞 Call: 8848263704
+                </a>
+
+                <button
+                    class="btn btn-secondary"
+                    id="copyPhoneBtn"
+                    title="Copy Phone Number">
+                    📋 Copy Phone
+                </button>
+
+                <a
+                    href="https://github.com/aswiiz/aswiiz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-secondary">
+                    GitHub ↗
+                </a>
+
+                <a
+                    href="https://www.linkedin.com/in/aswin-raj-r-b5b5093a2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-secondary">
+                    LinkedIn ↗
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+    <footer>
+
+        <div class="container footer-inner">
+
+            <span>
+                © 2026 Aswin Raj R · Junior Software Developer
+            </span>
+
+            <span>
+                Python · Django · MongoDB · Web Development · Testing · Debugging
+            </span>
+
+        </div>
+
+    </footer>
+
+</main>
+
+
+<!-- =====================================================
+     CLIENT-SIDE INTERACTIVE ENGINE
+====================================================== -->
+<script>
+/* =========================================================
+   1. SCROLL REVEAL OBSERVER
+========================================================= */
+function activateRevealAnimations() {
+    const elements = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.12 }
+    );
+
+    elements.forEach(element => observer.observe(element));
+}
+
+/* =========================================================
+   2. SCROLL PROGRESS BAR
+========================================================= */
+const progressBar = document.getElementById("scrollProgressBar");
+
+function updateScrollProgress() {
+    if (!progressBar) return;
+    const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollTotal <= 0) {
+        progressBar.style.width = "0%";
+        return;
+    }
+    const currentScroll = window.scrollY || document.documentElement.scrollTop;
+    const progress = Math.min(100, Math.max(0, (currentScroll / scrollTotal) * 100));
+    progressBar.style.width = progress + "%";
+}
+
+window.addEventListener("scroll", updateScrollProgress, { passive: true });
+window.addEventListener("resize", updateScrollProgress, { passive: true });
+
+/* =========================================================
+   3. COPY TO CLIPBOARD HELPER & TOAST
+========================================================= */
+const toast = document.getElementById("toast");
+let toastTimeout;
+
+function showToast(message) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add("visible");
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove("visible");
+    }, 2400);
+}
+
+const copyEmailBtn = document.getElementById("copyEmailBtn");
+if (copyEmailBtn) {
+    copyEmailBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText("rajraswin51@gmail.com")
+            .then(() => showToast("✓ Email copied: rajraswin51@gmail.com"))
+            .catch(() => showToast("Email: rajraswin51@gmail.com"));
+    });
+}
+
+const copyPhoneBtn = document.getElementById("copyPhoneBtn");
+if (copyPhoneBtn) {
+    copyPhoneBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText("8848263704")
+            .then(() => showToast("✓ Phone copied: 8848263704"))
+            .catch(() => showToast("Phone: 8848263704"));
+    });
+}
+
+/* =========================================================
+   4. PARALLAX HERO MOUSEMOVE
+========================================================= */
+document.addEventListener("mousemove", event => {
+    if (window.innerWidth < 900) return;
+
+    const x = (event.clientX / window.innerWidth - 0.5);
+    const y = (event.clientY / window.innerHeight - 0.5);
+
+    const visual = document.querySelector(".hero-visual");
+    if (visual) {
+        visual.style.transform = `translate(${x * 12}px, ${y * 12}px)`;
+    }
+
+    const laptop = document.querySelector(".laptop");
+    if (laptop) {
+        laptop.style.transform = `perspective(900px) rotateX(${8 - y * 10}deg) rotateY(${x * 12}deg)`;
+    }
+});
+
+/* =========================================================
+   5. INITIALIZE ON LOAD
+========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+    activateRevealAnimations();
+    updateScrollProgress();
+});
+
+window.addEventListener("load", () => {
+    activateRevealAnimations();
+    updateScrollProgress();
+});
+</script>
+
+</body>
+</html>
